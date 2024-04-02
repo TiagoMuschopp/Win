@@ -1,0 +1,124 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    color: #fff; 
+    font-family: Arial, sans-serif; 
+}
+
+.Container {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 1fr auto; 
+    grid-template-areas: 
+        "header header"
+        "main main"
+        "footer footer";
+    min-height: 100vh; 
+}
+
+
+header {
+    grid-area: header;
+    width: 80%;
+    margin-left: 10%;
+    height: 120px;
+    background-color: #aa0000;
+    border-bottom: 2px solid #fcfbfb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+main {
+    grid-area: main;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fdfdfd;
+}
+
+footer {
+    grid-area: footer;
+    background-color: #2105d4b1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+header h1 {
+    color: #fff;
+    font-size: 24px;
+}
+
+
+.formulario {
+    width: 80%;
+    max-width: 400px; 
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.formulario label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.formulario input[type="text"],
+.formulario input[type="email"],
+.formulario input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+}
+
+.formulario button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.formulario button[type="button"] {
+    margin-left: 173px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+/* Estilize mensagens de feedback */
+.message {
+    margin-top: 10px;
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+}
+.error-message {
+    color: red;
+}
+.success-message {
+    color: green;
+}
+
+#tabela-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #007bff;
+    width: 700px;
+    height: 600px;
+}

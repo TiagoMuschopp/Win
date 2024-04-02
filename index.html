@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Styles/index.css">
+    <title>Sistema de cadastro Validades</title>
+</head>
+<body>
+
+    <div class="Container">
+        <header class="Header">
+            <h1>Sistema de cadastro</h1>
+        </header>
+        <main class="Main">
+          
+            <div class="formulario">
+                <form id="formulario" action="#" method="POST">
+                    <div>
+                        <label for="descricao">Descrição:</label>
+                        <input id="descricao" type="text" name="descricao" placeholder="Descrição" required>
+                        <label for="validade">Validade:</label>
+                        <input id="validade" type="text" name="validade" placeholder="Validade" required>
+                    </div>
+
+                    <div>
+                        <label for="quantidade">Quantidade:</label>
+                        <input id="quantidade" type="text" name="quantidade" placeholder="Quantidade" required>
+                        <label for="nome">Nome:</label>
+                        <input id="nome" type="text" name="nome" placeholder="Nome" required>
+                    </div>
+                    <div class="bottom">
+                        <button type="submit" >Enviar</button>
+                        <button type="button" id="table">Abir tabela</button>
+                    </div>
+                </form>
+
+                <div id="mensagem"></div>
+            </div>
+        </main>
+        <footer class="footer"></footer>
+    </div>
+
+    <script src="storage/index.js"></script>
+</body>
+</html>

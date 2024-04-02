@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Styles/tabela.css">
+    <title>Tabela de Dados</title>
+</head>
+<body>
+    <div class="Container">
+        <header class="Header">
+            <h1>Tabela de Dados</h1>
+        </header>
+        <main class="Main">
+            <div id="tabela-container">
+                <h2>Dados cadastrados</h2>
+                <table id="tabela">
+                    <tr>
+                        <th>Descrição</th>
+                        <th>Quantidade</th>
+                        <th>Validade</th>
+                        <th>Nome</th>
+                    </tr>
+                
+                    <tbody id="tabela-body">
+                    </tbody>
+                </table>
+                <!-- Adicionando o seletor de ordem -->
+                <div id="seletor">
+                    <label for="seletor-ordem">Ordem:</label>
+                    <select id="seletor-ordem">
+                        <option value="default">Padrão</option>
+                        <option value="validadeAsc">Validade (crescente)</option>
+                        <option value="validadeDesc">Validade (decrescente)</option>
+                    </select>
+                    <input type="text" id="filtro-nome" placeholder="Filtrar por nome">
+                </div>
+                <button id="gerar-relatorio">Gerar relatório</button>
+            </div>
+        </main>
+        <footer class="footer"></footer>
+    </div>
+
+    <script src="storage/tabela.js"></script>
+</body>
+</html>
