@@ -29,7 +29,7 @@ console.log('Itens salvos:', JSON.parse(localStorage.getItem('itens')));
 // Verificar se o item foi salvo corretamente
 const itensSalvos = JSON.parse(localStorage.getItem('itens')) || [];
 const opentable = document.getElementById('table').addEventListener('click', function(){
-    window.open('tabela.html', '_blank');
+    window.location.href = 'tabela.html';
   } )
 
 
