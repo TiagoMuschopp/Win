@@ -59,3 +59,11 @@ body {
 #tabela tbody tr:hover {
     background-color: #ddd;
 }
+
+.vermelho {
+    background-color: red;
+  }
+.amarelo {
+    background-color: yellow;
+   
+  }

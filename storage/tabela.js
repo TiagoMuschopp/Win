@@ -1,6 +1,7 @@
-const opentable = document.getElementById('voltar-fechar').addEventListener('click', function(){
+document.getElementById('voltar-fechar').addEventListener('click', function(){
     window.location.href = 'index.html';
-  } )
+});
+
 document.addEventListener('DOMContentLoaded', () => {
     const corpoTabela = document.getElementById('tabela-body');
     const seletorOrdem = document.getElementById('seletor-ordem');
@@ -15,14 +16,14 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderizarTabela(itens) {
         corpoTabela.innerHTML = '';
 
-        itens.forEach(item => {
+        itens.forEach((item, index) => {
             const newRow = corpoTabela.insertRow();
             newRow.innerHTML = `
             <td>${item.nome}</td>
             <td>${item.descricao}</td>
             <td>${item.validade}</td>
             <td>${item.quantidade}</td>
-                <td><button class="btn-excluir" data-id="${item.id}">Excluir</button></td>
+            <td><button class="btn-excluir" data-id="${item.id}" data-index="${index}">Excluir</button></td>
             `;
         });
 
@@ -31,14 +32,15 @@ document.addEventListener('DOMContentLoaded', () => {
         botoesExcluir.forEach(botao => {
             botao.addEventListener('click', () => {
                 const itemId = botao.getAttribute('data-id');
-                excluirItem(itemId);
+                const itemIndex = parseInt(botao.getAttribute('data-index'));
+                excluirItem(itemId, itemIndex);
             });
         });
     }
 
     // Função para excluir um item da lista
-    function excluirItem(itemId) {
-        itensSalvos.splice(itensSalvos.findIndex(item => item.id === itemId), 1);
+    function excluirItem(itemId, itemIndex) {
+        itensSalvos.splice(itemIndex, 1)
         localStorage.setItem('itens', JSON.stringify(itensSalvos));
         // Atualizar a lista de itens exibidos e renderizar a tabela novamente
         filtrarPorNome(campoFiltroNome.value.trim());
