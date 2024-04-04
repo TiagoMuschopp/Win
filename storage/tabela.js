@@ -25,6 +25,28 @@ document.addEventListener('DOMContentLoaded', () => {
             <td>${item.quantidade}</td>
             <td><button class="btn-excluir" data-id="${item.id}" data-index="${index}">Excluir</button></td>
             `;
+
+            let vld = new Date(item.validade);
+            let day = vld.getDate();
+            let month = vld.getMonth() + 1; 
+            let year = vld.getFullYear();
+            
+            let today = new Date();
+            let time = new Date(`${year}-${day}-${month}`);
+            
+            let calc = Math.abs(time - today); // Diferença em milissegundos
+            
+            let dias = calc / (1000 * 60 * 60 * 24); // Convertendo milissegundos para dias
+            let arred = Math.ceil(dias);
+            
+            if (arred < 90) { // Menor que 3 meses (90 dias)
+                newRow.classList.add('vermelho');
+            } else if (arred < 180) { // Menor que 6 meses (180 dias)
+                console.log("Seis meses");
+                newRow.classList.add('amarelo');
+            }
+           
+
         });
 
         // Adicionando event listener para os botões de exclusão
@@ -36,6 +58,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 excluirItem(itemId, itemIndex);
             });
         });
+        
+
     }
 
     // Função para excluir um item da lista
