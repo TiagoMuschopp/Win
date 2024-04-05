@@ -1,18 +1,16 @@
-document.getElementById('voltar-fechar').addEventListener('click', function(){
+document.getElementById('voltar-fechar').addEventListener('click', () => {
     window.location.href = 'index.html';
 });
 
 document.addEventListener('DOMContentLoaded', () => {
     const corpoTabela = document.getElementById('tabela-body');
     const seletorOrdem = document.getElementById('seletor-ordem');
-    const campoFiltroNome = document.getElementById('filtro-nome'); // Novo campo de filtro por nome
+    const campoFiltroNome = document.getElementById('filtro-nome'); 
     const itensSalvos = JSON.parse(localStorage.getItem('itens')) || [];
-    let itensExibidos = [...itensSalvos]; // Usado para manter uma cópia dos itens exibidos
+    let itensExibidos = [...itensSalvos]; 
 
-    // Renderizar a tabela
     renderizarTabela(itensExibidos);
 
-    // Função para renderizar a tabela
     function renderizarTabela(itens) {
         corpoTabela.innerHTML = '';
 
@@ -29,25 +27,23 @@ document.addEventListener('DOMContentLoaded', () => {
             let time = item.validade;
             let partes = time.split('/');
             let dia = parseInt(partes[0], 10);
-            let mes = parseInt(partes[1], 10) - 1; // Os meses em JavaScript são baseados em zero (janeiro = 0, fevereiro = 1, ...)
+            let mes = parseInt(partes[1], 10) - 1;
             let ano = parseInt(partes[2], 10);
             let tempo = new Date(ano, mes, dia);
             
             let today = new Date();
 
-            
-            let calc = Math.abs(tempo - today); // Diferença em milissegundos
-            
-            let dias = calc / (1000 * 60 * 60 * 24); // Convertendo milissegundos para dias
+            let calc = Math.abs(tempo - today);
+            let dias = calc / (1000 * 60 * 60 * 24);
             let arred = Math.ceil(dias);
         
             let atual = new Date().getFullYear();
             let mual = new Date().getMonth();
             let dual = new Date().getDay();
             
-            if (arred < 90) { // Menor que 3 meses (90 dias)
+            if (arred < 90) {
                 newRow.classList.add('vermelho');
-            } else if (arred > 90 && arred < 180) { // Menor que 6 meses (180 dias) 
+            } else if (arred > 90 && arred < 180) {
                 newRow.classList.add('amarelo');
             }
             if (ano < atual || mes < mual && ano == atual){
@@ -56,11 +52,8 @@ document.addEventListener('DOMContentLoaded', () => {
              if(arred < 4){
                 newRow.classList.add('aviso');
             }
-           
-
         });
 
-        // Adicionando event listener para os botões de exclusão
         const botoesExcluir = document.querySelectorAll('.btn-excluir');
         botoesExcluir.forEach(botao => {
             botao.addEventListener('click', () => {
@@ -69,19 +62,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 excluirItem(itemId, itemIndex);
             });
         });
-        
-
     }
 
-    // Função para excluir um item da lista
     function excluirItem(itemId, itemIndex) {
         itensSalvos.splice(itemIndex, 1)
         localStorage.setItem('itens', JSON.stringify(itensSalvos));
-        // Atualizar a lista de itens exibidos e renderizar a tabela novamente
         filtrarPorNome(campoFiltroNome.value.trim());
     }
 
-    // Função para ordenar os itens por validade
     function ordenarPorValidade(ordem) {
         if (ordem === 'validadeAsc') {
             itensExibidos.sort((a, b) => new Date(a.validade) - new Date(b.validade));
@@ -91,14 +79,12 @@ document.addEventListener('DOMContentLoaded', () => {
         renderizarTabela(itensExibidos);
     }
 
-    // Função para filtrar os itens por nome
     function filtrarPorNome(nome) {
-        const regex = new RegExp(nome, 'i'); // Expressão regular para busca por nome, o 'i' ignora maiúsculas e minúsculas
+        const regex = new RegExp(nome, 'i');
         itensExibidos = itensSalvos.filter(item => regex.test(item.nome));
         renderizarTabela(itensExibidos);
     }
 
-    // Event listener para mudanças no seletor de ordem
     seletorOrdem.addEventListener('change', () => {
         const ordemSelecionada = seletorOrdem.value;
         if (ordemSelecionada !== 'default') {
@@ -106,7 +92,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Event listener para mudanças no campo de filtro por nome
     campoFiltroNome.addEventListener('input', () => {
         const nomeFiltrado = campoFiltroNome.value.trim();
         filtrarPorNome(nomeFiltrado);
@@ -114,21 +99,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById('exportar-csv').addEventListener('click', () => {
         const csvContent = "data:text/csv;charset=utf-8," 
-            + "Nome,Descrição,Validade,Quantidade\n" // Adiciona uma linha com os nomes das colunas
+            + "Nome,Descrição,Validade,Quantidade\n" 
             + itensExibidos.map(item => `${item.nome},${item.descricao},${item.validade},${item.quantidade}`).join("\n");
     
         const encodedUri = encodeURI(csvContent);
         const link = document.createElement("a");
         link.setAttribute("href", encodedUri);
         link.setAttribute("download", "itens.csv");
-        document.body.appendChild(link); // Required for Firefox
+        document.body.appendChild(link); 
         link.click();
     });
-    
-    
 
     document.getElementById('gerar-relatorio').addEventListener('click', () => {
-        const itens = itensExibidos; // Supondo que itensExibidos seja a lista de itens a ser exibida no relatório
+        const itens = itensExibidos; 
         const relatorioHTML = `
             <div style="display: flex; justify-content: center;">
                 <div style="background-color: #f2f2f2; padding: 20px; border-radius: 10px;">
@@ -156,13 +139,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             </div>`;
     
-    
-    
         const janelaRelatorio = window.open('', '_blank');
         janelaRelatorio.document.open();
         janelaRelatorio.document.write(relatorioHTML);
         janelaRelatorio.document.close();
     });
-    
-    
 });

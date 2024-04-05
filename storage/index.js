@@ -1,3 +1,23 @@
+
+   function validarData() {
+    var inputValidade = document.getElementById('validade');
+    var regexData = /^\d{2}\/\d{2}\/\d{4}$/; // Expressão regular para dd/mm/yyyy
+
+    if (!regexData.test(inputValidade.value)) {
+        alert('Formato de data inválido. Por favor, insira no formato dd/mm/yyyy.');
+        inputValidade.focus();
+        return false;
+    }
+    return true;
+}
+
+// Evento de submissão do formulário
+document.getElementById('formulario').addEventListener('submit', function(event) {
+    if (!validarData()) {
+        event.preventDefault(); // Impede o envio do formulário se a validação falhar
+    }
+});
+
 document.getElementById('formulario').addEventListener('submit', function(){
 
 

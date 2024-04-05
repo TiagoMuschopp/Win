@@ -67,12 +67,12 @@
         background-color: #333 !important;
     }
     .aviso{
-        animation: aviso 4s infinite;
+        animation: aviso 2s infinite;
     }
     @keyframes aviso {
-        0% { background-color:#ddd; color:#ff0000 }
-        50% { background-color: #ddd; color:#ffffff}
-        100% { background-color: #ddd; color:#ff0000  }
+        0% { background-color:#ffffff; color:#ff0000 }
+        50% { background-color: #ffffff; color:#000000}
+        100% { background-color: #bc000060; color:#000000  }
     }
     .footer{
         margin-top: 20px;
