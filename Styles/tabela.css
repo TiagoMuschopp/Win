@@ -63,3 +63,63 @@
         background-color: rgba(255, 255, 0, 0.615);
     
     }
+    .preto{
+        background-color: #333 !important;
+    }
+    .aviso{
+        animation: aviso 4s infinite;
+    }
+    @keyframes aviso {
+        0% { background-color:#ddd; color:#ff0000 }
+        50% { background-color: #ddd; color:#ffffff}
+        100% { background-color: #ddd; color:#ff0000  }
+    }
+    .footer{
+        margin-top: 20px;
+        border-top: 1px solid #666;
+        height: 200px;
+    }
+    
+    .legend {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between; /* Alterado para flex-start para alinhar os itens no início */
+        padding: 10px; /* Adicionando um espaçamento interno */
+        border-radius: 10px; /* Arredondando as bordas */
+        align-items: center; /* Centralizando verticalmente */
+    }
+    .legend span{
+        position: relative;
+        right: 7%;
+    }
+    
+    .circle {
+        border: 1px solid #000000;
+        border-radius: 50%; /* Use 50% para obter um círculo perfeito */
+        width: 20px; /* Reduzindo um pouco o tamanho dos círculos */
+        height: 20px; /* Reduzindo um pouco o tamanho dos círculos */
+        margin-right: 5px; /* Reduzindo o espaço entre os círculos e o texto */
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Adicionando uma sombra sutil */
+    }
+    
+    /* Adicionando gradientes para círculos para torná-los mais atraentes */
+    #red {
+        background: radial-gradient(circle, #ff5f5f, #aa0000);
+    }
+    #yellow {
+        background: radial-gradient(circle, #fff17a, #f0e600);
+    }
+    #white {
+        background: radial-gradient(circle, #f2f2f2, #ddd);
+    }
+    #black {
+        background: radial-gradient(circle, #666, #333);
+    }
+    
+    /* Estilizando o texto */
+    .legend span {
+        font-family: Arial, sans-serif; /* Especificando uma fonte genérica */
+        font-size: 14px; /* Tamanho da fonte */
+    }
+    
+    

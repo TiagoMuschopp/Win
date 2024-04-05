@@ -26,24 +26,36 @@ document.addEventListener('DOMContentLoaded', () => {
             <td><button class="btn-excluir" data-id="${item.id}" data-index="${index}">Excluir</button></td>
             `;
 
-            let vld = new Date(item.validade);
-            let day = vld.getDate();
-            let month = vld.getMonth() + 1; 
-            let year = vld.getFullYear();
+            let time = item.validade;
+            let partes = time.split('/');
+            let dia = parseInt(partes[0], 10);
+            let mes = parseInt(partes[1], 10) - 1; // Os meses em JavaScript são baseados em zero (janeiro = 0, fevereiro = 1, ...)
+            let ano = parseInt(partes[2], 10);
+            let tempo = new Date(ano, mes, dia);
             
             let today = new Date();
-            let time = new Date(`${year}-${day}-${month}`);
+
             
-            let calc = Math.abs(time - today); // Diferença em milissegundos
+            let calc = Math.abs(tempo - today); // Diferença em milissegundos
             
             let dias = calc / (1000 * 60 * 60 * 24); // Convertendo milissegundos para dias
             let arred = Math.ceil(dias);
+        
+            let atual = new Date().getFullYear();
+            let mual = new Date().getMonth();
+            let dual = new Date().getDay();
             
             if (arred < 90) { // Menor que 3 meses (90 dias)
                 newRow.classList.add('vermelho');
-            } else if (arred < 180) { // Menor que 6 meses (180 dias)
-                console.log("Seis meses");
+            } else if (arred > 90 && arred < 180) { // Menor que 6 meses (180 dias) 
                 newRow.classList.add('amarelo');
+            }
+            if (ano < atual || mes < mual && ano == atual){
+                newRow.classList.add('preto');
+            }
+             if(arred < 4){
+                console.log("dias")
+                newRow.classList.add('aviso');
             }
            
 
