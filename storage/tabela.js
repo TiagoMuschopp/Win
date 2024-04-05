@@ -54,7 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 newRow.classList.add('preto');
             }
              if(arred < 4){
-                console.log("dias")
                 newRow.classList.add('aviso');
             }
            
