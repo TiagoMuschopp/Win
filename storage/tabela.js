@@ -72,9 +72,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function ordenarPorValidade(ordem) {
         if (ordem === 'validadeAsc') {
-            itensExibidos.sort((a, b) => new Date(a.validade) - new Date(b.validade));
+            itensExibidos.sort((a, b) => {
+                const dataA = a.validade.split('/').reverse().join('/');
+                const dataB = b.validade.split('/').reverse().join('/');
+                return new Date(dataA) - new Date(dataB);
+            });
         } else if (ordem === 'validadeDesc') {
-            itensExibidos.sort((a, b) => new Date(b.validade) - new Date(a.validade));
+            itensExibidos.sort((a, b) => {
+                const dataA = a.validade.split('/').reverse().join('/');
+                const dataB = b.validade.split('/').reverse().join('/');
+                return new Date(dataB) - new Date(dataA);
+            });
         }
         renderizarTabela(itensExibidos);
     }
